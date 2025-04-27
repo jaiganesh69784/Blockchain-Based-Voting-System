@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Blockchain Voting System</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .candidate-card {
+            border: 1px solid #ddd;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 5px;
+        }
+        .form-group {
+            margin: 15px 0;
+        }
+        input, select {
+            padding: 8px;
+            width: 100%;
+            margin-top: 5px;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        #message {
+            margin-top: 20px;
+            padding: 10px;
+            display: none;
+        }
+        .success {
+            background-color: #dff0d8;
+            color: #3c763d;
+        }
+        .error {
+            background-color: #f2dede;
+            color: #a94442;
+        }
+        .candidate-option {
+            padding: 10px;
+            margin: 5px 0;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        .candidate-option:hover {
+            background-color: #f5f5f5;
+        }
+        .party-info {
+            font-size: 0.8em;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+    <h1>Indian Election Voting System</h1>
+
+    <div style="margin-bottom: 20px;">
+        <a href="/register" style="display: inline-block; padding: 10px 20px; background-color: #008CBA; color: white; text-decoration: none; border-radius: 4px;">Register to Vote</a>
+    </div>
+
+    <div class="form-group">
+        <label for="voter_id">Enter your UIN (Unique Identity Number):</label>
+        <input type="text" id="voter_id" required placeholder="Enter the UIN sent to your email">
+    </div>
+
+    <div class="form-group">
+        <label for="candidate">Select your candidate:</label>
+        <select id="candidate" required>
+            <option value="">--Select a Candidate--</option>
+            <option value="Narendra Modi">Narendra Modi - BJP</option>
+            <option value="Rahul Gandhi">Rahul Gandhi - INC</option>
+            <option value="Mamata Banerjee">Mamata Banerjee - TMC</option>
+            <option value="Arvind Kejriwal">Arvind Kejriwal - AAP</option>
+            <option value="M.K. Stalin">M.K. Stalin - DMK</option>
+            <option value="Nitish Kumar">Nitish Kumar - JD(U)</option>
+            <option value="Akhilesh Yadav">Akhilesh Yadav - SP</option>
+            <option value="Uddhav Thackeray">Uddhav Thackeray - SS</option>
+            <option value="Y.S. Jagan Mohan Reddy">Y.S. Jagan Mohan Reddy - YSRCP</option>
+        </select>
+    </div>
+
+    <button onclick="castVote()">Cast Vote</button>
+
+    <div id="message"></div>
+
+    <div style="margin-top: 20px;">
+        <a href="/results" style="display: inline-block; padding: 10px 20px; background-color: #008CBA; color: white; text-decoration: none; border-radius: 4px;">View Results</a>
+    </div>
+
+    <div style="margin-top: 20px;">
+        <a href="/sample_uins" style="text-decoration: none; color: #666;">View Sample UINs for Testing</a>
+    </div>
+
+    <script>
+        async function castVote() {
+            const voter_id = document.getElementById('voter_id').value.trim();
+            const candidate = document.getElementById('candidate').value;
+            const messageDiv = document.getElementById('message');
+
+            if (!voter_id) {
+                showMessage('Please enter your UIN number', false);
+                return;
+            }
+
+            if (!candidate) {
+                showMessage('Please select a candidate', false);
+                return;
+            }
+
+            try {
+                // First check if the UIN is valid
+                const checkResponse = await fetch(`/check_registration/${voter_id}`);
+                const checkResult = await checkResponse.json();
+
+                if (!checkResult.registered) {
+                    showMessage('Invalid UIN Number. Please check your email for the correct UIN or register if you haven\'t already.', false);
+                    return;
+                }
+
+                if (checkResult.has_voted) {
+                    showMessage('You have already cast your vote. Multiple voting is not allowed.', false);
+                    return;
+                }
+
+                // Proceed with voting
+                const response = await fetch('/vote', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        voter_id: voter_id,
+                        candidate: candidate
+                    })
+                });
+
+                const result = await response.json();
+
+                if (response.ok) {
+                    showMessage('Thank you! Your vote has been recorded successfully.', true);
+                    document.getElementById('voter_id').value = '';
+                    document.getElementById('candidate').value = '';
+                } else {
+                    showMessage(result.error || 'Error casting vote. Please try again.', false);
+                }
+            } catch (error) {
+                showMessage('Error processing request. Please try again.', false);
+                console.error('Error:', error);
+            }
+        }
+
+        function showMessage(message, isSuccess) {
+            const messageDiv = document.getElementById('message');
+            messageDiv.textContent = message;
+            messageDiv.style.display = 'block';
+            messageDiv.className = isSuccess ? 'success' : 'error';
+            if (isSuccess) {
+                setTimeout(() => {
+                    messageDiv.style.display = 'none';
+                }, 5000);
+            }
+        }
+    </script>
+</body>
+</html>

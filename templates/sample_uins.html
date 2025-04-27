@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Sample UINs for Testing</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+        th {
+            background-color: #f4f4f4;
+        }
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        .voted {
+            color: red;
+            font-weight: bold;
+        }
+        .not-voted {
+            color: green;
+        }
+    </style>
+</head>
+<body>
+    <h1>Sample UINs for Testing</h1>
+    <p>Use any of these UINs to test the voting system. Each UIN can only vote once.</p>
+
+    <table>
+        <thead>
+            <tr>
+                <th>UIN</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Voting Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for uin in uins %}
+            <tr>
+                <td>{{ uin }}</td>
+                <td>{{ voters[uin]['first_name'] }} {{ voters[uin]['last_name'] }}</td>
+                <td>{{ voters[uin]['email'] }}</td>
+                <td class="{{ 'voted' if voters[uin]['has_voted'] else 'not-voted' }}">
+                    {{ 'Already Voted' if voters[uin]['has_voted'] else 'Not Voted Yet' }}
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <div style="margin-top: 20px;">
+        <a href="/" style="text-decoration: none; color: #666;">Back to Voting Page</a>
+    </div>
+</body>
+</html>

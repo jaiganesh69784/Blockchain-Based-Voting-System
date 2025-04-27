@@ -1,0 +1,112 @@
+{
+    "550e8400-e29b-41d4-a716-446655440000": {
+        "first_name": "Rahul",
+        "last_name": "Sharma",
+        "email": "rahul.s@example.com",
+        "phone": "9876543210",
+        "age": 25,
+        "birth_place": "Mumbai",
+        "photo": "rahul_sharma.jpg",
+        "has_voted": false,
+        "registration_date": "2024-03-15"
+    },
+    "650e8400-e29b-41d4-a716-446655440001": {
+        "first_name": "Priya",
+        "last_name": "Patel",
+        "email": "priya.p@example.com",
+        "phone": "9876543211",
+        "age": 30,
+        "birth_place": "Delhi",
+        "photo": "priya_patel.jpg",
+        "has_voted": false,
+        "registration_date": "2024-03-15"
+    },
+    "750e8400-e29b-41d4-a716-446655440002": {
+        "first_name": "Amit",
+        "last_name": "Kumar",
+        "email": "amit.k@example.com",
+        "phone": "9876543212",
+        "age": 28,
+        "birth_place": "Bangalore",
+        "photo": "amit_kumar.jpg",
+        "has_voted": false,
+        "registration_date": "2024-03-15"
+    },
+    "850e8400-e29b-41d4-a716-446655440003": {
+        "first_name": "Sneha",
+        "last_name": "Reddy",
+        "email": "sneha.r@example.com",
+        "phone": "9876543213",
+        "age": 35,
+        "birth_place": "Hyderabad",
+        "photo": "sneha_reddy.jpg",
+        "has_voted": false,
+        "registration_date": "2024-03-15"
+    },
+    "950e8400-e29b-41d4-a716-446655440004": {
+        "first_name": "Rajesh",
+        "last_name": "Singh",
+        "email": "rajesh.s@example.com",
+        "phone": "9876543214",
+        "age": 45,
+        "birth_place": "Lucknow",
+        "photo": "rajesh_singh.jpg",
+        "has_voted": false,
+        "registration_date": "2024-03-15"
+    },
+    "150e8400-e29b-41d4-a716-446655440005": {
+        "first_name": "Meera",
+        "last_name": "Iyer",
+        "email": "meera.i@example.com",
+        "phone": "9876543215",
+        "age": 29,
+        "birth_place": "Chennai",
+        "photo": "meera_iyer.jpg",
+        "has_voted": false,
+        "registration_date": "2024-03-15"
+    },
+    "250e8400-e29b-41d4-a716-446655440006": {
+        "first_name": "Arjun",
+        "last_name": "Nair",
+        "email": "arjun.n@example.com",
+        "phone": "9876543216",
+        "age": 33,
+        "birth_place": "Kochi",
+        "photo": "arjun_nair.jpg",
+        "has_voted": false,
+        "registration_date": "2024-03-15"
+    },
+    "350e8400-e29b-41d4-a716-446655440007": {
+        "first_name": "Anita",
+        "last_name": "Desai",
+        "email": "anita.d@example.com",
+        "phone": "9876543217",
+        "age": 27,
+        "birth_place": "Pune",
+        "photo": "anita_desai.jpg",
+        "has_voted": false,
+        "registration_date": "2024-03-15"
+    },
+    "450e8400-e29b-41d4-a716-446655440008": {
+        "first_name": "Vikram",
+        "last_name": "Mehta",
+        "email": "vikram.m@example.com",
+        "phone": "9876543218",
+        "age": 31,
+        "birth_place": "Ahmedabad",
+        "photo": "vikram_mehta.jpg",
+        "has_voted": false,
+        "registration_date": "2024-03-15"
+    },
+    "550e8400-e29b-41d4-a716-446655440009": {
+        "first_name": "Deepa",
+        "last_name": "Verma",
+        "email": "deepa.v@example.com",
+        "phone": "9876543219",
+        "age": 36,
+        "birth_place": "Kolkata",
+        "photo": "deepa_verma.jpg",
+        "has_voted": false,
+        "registration_date": "2024-03-15"
+    }
+}
